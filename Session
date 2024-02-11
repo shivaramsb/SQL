@@ -1,0 +1,394 @@
+CREATE DATABASE college;
+
+CREATE TABLE student (
+Student_ID INT PRIMARY KEY,
+Name VARCHAR(50),
+Age INT NOT NULL
+);
+
+INSERT INTO student VALUES (1, "Shivaram",22);
+INSERT INTO student VALUES (3, "Chhotya",21);
+SELECT *FROM student;
+DELETE From Student WHERE Student_ID=3;
+SELECT *FROM student;
+
+SHOW DATABASES;
+SHOW TABLES;
+CREATE DATABASE IF NOT EXISTS college;
+DROP DATABASE IF EXISTS COMPANY;
+
+DROP TABLE student;
+
+CREATE TABLE Student (
+Roll_No INT PRIMARY KEY,
+name VARCHAR(50)
+);
+
+SELECT *From Student;
+
+INSERT INTO Student(
+Roll_No, Name) 
+VALUES 
+(101, "Shivaram"),
+(102, "Chhotya"),
+(103, "Pramod");
+
+CREATE DATABASE XYZ;
+CREATE TABLE Employee_Info 
+(ID INT PRIMARY KEy,
+Name VARCHAR (50),
+Salary INT NOT NULL);
+
+INSERT INTO Employee_Info VALUES 
+(1, "adam",25000),
+(2,"bob",30000),
+(3,"casey",40000);
+
+SELECT * From Employee_Info;
+
+
+CREATE DATABASE ETC_ENGINEERING;
+CREATE TABLE Students_Info (
+Roll_No INT PRIMARY KEY,
+Name VARCHAR(50),
+Address VARCHAR(50),
+Mob_No BIGINT NOT NULL);
+SELECT *FROM Students_Info;
+DROP TABLE Students_Info;
+
+INSERT INTO students_Info VALUES 
+(1,"Shivaram","Jath",9067175141),
+(2,"Prasad","Budhagaon",9284920220),
+(3, "Siddhanath","Madhavnagar",9158139743);
+SELECT *FROM Students_Info;
+
+CREATE TABLE temp (
+Id INT UNIQUE
+);
+INSERT INTO temp VALUES 
+(101),
+(101);
+
+SELECT *FROM temp;
+
+CREATE TABLE temp1 (
+Id INT PRIMARY KEY,
+Name VARCHAR(50),
+age INT,
+city VARCHAR(50)
+);
+
+CREATE TABLE Emp (
+id INT,
+salary INT DEFAULT 25000);
+
+INSERT INTO emp (id) VALUES (101);
+SELECT *FROM emp;
+
+CREATE TABLE newtab(
+age INT CHECK (age>=18));
+
+CREATE DATABASE college;
+DROP DATABASE college;
+
+CREATE DATABASE college;
+USE college;
+
+CREATE TABLE students (
+Roll_No INT PRIMARY KEY,
+Name VARCHAR (50),
+Marks INT NOT NULL,
+Grade VARCHAR(50),
+City VARCHAR(50)
+);
+
+INSERT INTO students 
+(Roll_No,Name,Marks,Grade,City)
+VALUES 
+(101,"Anil",78,"C","Pune"),
+(102,"Bhumika",93,"A","Mumbai"),
+(103,"Chetan",85,"B","Mumbai"),
+(104,"Dhruv",96,"A","Delhi"),
+(105,"Prakash",12,"F","Delhi"),
+(106,"Farah",82,"B","Pune");
+
+SELECT *FROM students;
+SELECT Name, Marks FROM students;
+SELECT DISTINCT City FROM students;
+SELECT *FROM Students WHERE Marks>80;
+SELECT *FROM Students WHERE City="Mumbai" AND Marks>80;
+SELECT *FROM Students WHERE Marks+10>100;
+SELECT *FROM Students WHERE Marks>80 AND City="Mumbai";
+SELECT *FROM Students WHERE Marks>80 OR City="Mumbai";
+SELECT *FROM Students ORDER BY Marks DESC;
+SELECT *FROM Students ORDER BY Marks DESC LIMIT 3;
+SELECT MAX(Marks) FROM Students;
+SELECT AVG(Marks) FROM Students;
+SELECT MIN(Marks) FROM Students;
+SELECT COUNT(Marks) FROM Students;
+SELECT City, COUNT(Name) 
+FROM Students
+GROUP BY City;
+SELECT City, Name, COUNT(Roll_No) 
+FROM Students
+GROUP BY City, Name;
+SELECT City, AVG(Marks) 
+FROM Students
+GROUP BY City;
+SELECT City, AVG(Marks)
+FROM Students
+GROUP BY City
+ORDER By City;
+SELECT City, AVG(Marks)
+FROM Students
+GROUP BY City
+ORDER By AVG(Marks) DESC;
+
+CREATE TABLE Payment(
+Customer_id INT PRIMARY KEY,
+Customer VARCHAR(50),
+Mode VARCHAR(50),
+City VARCHAR(50)
+);
+
+INSERT INTO Payment VALUES 
+(110,"Olivia Bareet","Net banking","Portland"),
+(111,"Ethan Sinclar","Credit Card","Miami"),
+(112,"Maya Harnadez","Credit Card","Seattle"),
+(113, "Shivaram Babar","Debit Card", "Pune");
+
+SELECT *FROM Payment;
+
+SELECT Mode, COUNT(Customer)
+FROM Payment
+GROUP BY Mode;
+
+SELECT Grade, COUNT(Roll_No)
+FROM Students
+GROUP By Grade
+ORDER bY Grade;
+
+SELECT Grade 
+FROM Students
+GROUP By Grade
+ORDER bY Grade;
+
+SELECT City, COUNT(Name)
+FROM students
+GROUP BY City
+HAVING MAX(Marks) > 90;
+
+SELECT City 
+FROM students
+WHERE Grade="A"
+GROUP BY City 
+HAVING MAX(Marks)>=90
+ORDER BY City ASC;
+
+UPDATE students
+SET Grade="0"
+WHERE Grade="A";
+
+SELECT *FROM students;
+
+UPDATE students 
+SET Marks=Marks+1;
+SELECT *FROM students;
+
+DELETE FROM students
+WHERE Marks<33;
+
+SELECT *FROM students;
+
+
+CREATE TABLE dept(
+id INT PRIMARY KEY,
+Name VARCHAR(50));
+
+INSERT INTO dept VALUES 
+(101, "english"),
+(102,"IT");
+SELECT *FROM dept;
+DROP TABLE dept;
+
+UPDATE dept
+SET id=103
+WHERE id=102;
+
+CREATE TABLE Teacher(
+id INT PRIMARY KEY,
+Name VARCHAR(50),
+dept_id INT,
+FOREIGN KEY (dept_id) REFERENCES dept(id)
+ON UPDATE CASCADE
+ON DELETE CASCADE
+);
+
+INSERT INTO Teacher VALUES
+(101,"ram",101),
+(102,"sham",102);
+SELECT *FROM Teacher;
+
+DROP TABLE Teacher;
+
+CREATE TABLE dept(
+id INT PRIMARY KEY,
+Name VARCHAR(50));
+
+CREATE TABLE Teacher(
+id INT PRIMARY KEY,
+Name VARCHAR(50),
+dept_id INT,
+FOREIGN KEY (dept_id) REFERENCES dept(id)
+);
+
+DROP TABLE dept;
+
+INSERT INTO dept VALUES 
+(101, "english"),
+(102,"IT");
+
+
+SELECT *FROM dept;
+INSERT INTO dept VALUES 
+(101, "english"),
+(102,"IT");
+DROP TABLE dept;
+
+CREATE TABLE Students_Information (
+Roll_No INT PRIMARY KEY,
+Name VARCHAR (50),
+Marks INT NOT NULL,
+Grade VARCHAR(50),
+City VARCHAR(50)
+);
+
+
+ALTER TABLE Students_Information
+CHANGE Name Full_Name VARCHAR(50);
+SELECT *FROM Students_Information;
+
+DELETE FROM Students_Information 
+WHERE marks<80;
+
+ALTER TABLE Students_Information 
+DROP COLUMN Grade;
+
+
+
+ALTER TABLE Students_Information
+ADD Age INT NOT NULL DEFAULT 19 ;
+SELECT *FROM Students_Information;
+
+ALTER TABLE Students_Information
+MODIFY COLUMN Age VARCHAR(2);
+
+ALTER TABLE Students_Information
+DROP Age;
+
+
+
+INSERT INTO Students_Information 
+(Roll_No,Name,Marks,Grade,City)
+VALUES 
+(101,"Anil",78,"C","Pune"),
+(102,"Bhumika",93,"A","Mumbai"),
+(103,"Chetan",85,"B","Mumbai"),
+(104,"Dhruv",96,"A","Delhi"),
+(105,"Prakash",12,"F","Delhi"),
+(106,"Farah",82,"B","Pune");
+
+TRUNCATE TABLE Students_Information;
+
+CREATE TABLE pvpstudent(
+Student_id INT,
+Name VARCHAR(50));
+
+INSERT INTO pvpstudent(Student_id,Name) VALUES
+(101,"Adam"),
+(102,"Bob"),
+(103,"Casey");
+
+ DROP TABLE pvpstudent ;
+
+CREATE TABLE Courses (
+Student_id INT,
+Course VARCHAR(50));
+
+INSERT INTO Courses VALUES 
+(102,"English"),
+(105,"Maths"),
+(103,"Science"),
+(107,"Cs");
+
+SELECT *FROM pvpstudent LIMIT 3;
+
+SELECT *FROM Courses;
+
+SELECT * 
+FROM pvpstudent 
+INNER JOIN Courses
+ON pvpstudent.Student_id=Courses.Student_id;
+
+SELECT * 
+FROM pvpstudent 
+RIGHT JOIN Courses
+ON pvpstudent.Student_id=Courses.Student_id;
+
+SELECT * FROM pvpstudent 
+LEFT JOIN  Courses 
+ON pvpstudent.Student_id=Courses.Student_id
+UNION
+SELECT * FROM pvpstudent 
+RIGHT JOIN Courses 
+ON pvpstudent.Student_id=Courses.Student_id;
+
+SELECT * FROM pvpstudent 
+RIGHT JOIN  Courses 
+ON pvpstudent.Student_id=Courses.Student_id
+WHERE pvpstudent.Student_id IS NULL;
+
+CREATE TABLE department (
+    depid INT PRIMARY KEY,
+    dep_name VARCHAR(50),
+    dep_location VARCHAR(50)
+);
+
+CREATE TABLE employee (
+    empid INT PRIMARY KEY,
+    emp_name VARCHAR(50),
+    emp_address VARCHAR(50),
+    depid INT,
+    FOREIGN KEY(depid) REFERENCES department(depid)
+);
+
+INSERT INTO department VALUES 
+(201, "Engineering", "San Francisco"),
+(202, "Marketing", "New York"),
+(203, "Finance", "Chicago");
+
+INSERT INTO employee VALUES 
+(101, "John Doe", "San Francisco", 201),
+(102, "Jane Smith", "New York", 202),
+(103, "Michael Johnson", "Chicago", 203);
+
+SELECT *FROM department;
+SELECT *FROM employee;
+
+
+CREATE TABLE employees (
+Firstname VARCHAR(10),
+lastname VARCHAR(10),
+Title VARCHAR(10),
+Age INT NOT NULL,
+Salary int
+);
+DROP TABLE employees;
+
+SELECT *FROM employees;
+ALTER TABLE employees ADD Loc Varchar(1);
+
+SHOW TABLES;
+
+DROP TABLE employees;
+
