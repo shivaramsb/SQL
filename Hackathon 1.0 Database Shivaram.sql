@@ -141,9 +141,11 @@ FROM EMPLOYEE
 WHERE ENAME LIKE '%A%';
 
 -- C) Show all employees who were hired in the first half of the month (Before the 16th of the month).
-SELECT *
-FROM EMPLOYEE
-WHERE DAY(BDATE) <= 15;
+SELECT ENAME 
+FROM EMPLOYEE 
+JOIN DEPARTMENT ON EMPLOYEE.DNO = DEPARTMENT.DNUMBER 
+WHERE DAYOFMONTH(MGRSTARTD) < 16;
+
 
 -- D) Display the name of all female employees.
 SELECT ENAME
